@@ -1,0 +1,128 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	controllerName="pintogeloApppintogeloApp.controller.category" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:custom="pintogeloApppintogeloApp.custom.controls">
+	<Page title="{categoryDetail>/category/name}">
+		<customHeader>
+			<OverflowToolbar>
+				<Button press="onNavBack" icon="sap-icon://nav-back" visible="{device>/system/phone}"/>
+				<Text text="Toolbar Amministratore" visible="{= !(${device>/system/phone}) }"/>
+				<ToolbarSpacer/>
+				<Button press="onPressEditCategory" icon="sap-icon://edit" text="Modifica categoria"/>
+				<Button press="onPressDeleteCategory" icon="sap-icon://delete" text="Cancella categoria" data:idCategory="{categoryDetail>/category/id}"/>
+			</OverflowToolbar>
+		</customHeader>
+		<content>
+			<VBox>
+				<l:VerticalLayout width="100%">
+					<l:BlockLayout background="Default">
+						<l:BlockLayoutRow accentCells="Accent1">
+							<l:BlockLayoutCell title="{categoryDetail>/category/name}" titleAlignment="Center">
+								<Text text="{categoryDetail>/category/description}"/>
+							</l:BlockLayoutCell>
+						</l:BlockLayoutRow>
+					</l:BlockLayout>
+					<l:BlockLayout background="Default">
+						<l:BlockLayoutRow accentCells="Accent1">
+							<l:BlockLayoutCell>
+								<!--<Button press="onPressSortProduct" icon="sap-icon://sort" text="Ordina prodotti"/>-->
+								<!--<VBox class="sapMSlideTile" width="11rem">-->
+								<!--	<Image src="https://www.pintogelo.com/app/public/api/products/28/photo" width="100%" height="11rem"/>-->
+								<!--	<FlexBox direction="Column" justifyContent="SpaceBetween" height="5rem" class="sapMProductInformation">-->
+								<!--		<FlexBox direction="Column" justifyContent="SpaceBetween" height="100%" class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">-->
+								<!--			<Text class="sapMProductInformationHeader" width="100%" text="Gelatooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" maxLines="2"/>-->
+								<!--			<Text class="sapMProductInformationFooter" width="100%" text="Gelato" textAlign="End"/>-->
+								<!--		</FlexBox>-->
+								<!--	</FlexBox>-->
+								<!--</VBox>-->
+							</l:BlockLayoutCell>
+						</l:BlockLayoutRow>
+					</l:BlockLayout>
+					<l:BlockLayout background="Default" content="{categoryDetail>/category/rows}">
+						<l:BlockLayoutRow accentCells="Accent1">
+							<l:BlockLayoutCell width="2" content="{categoryDetail>products}" visible="{= !(${views>/categoryPage/sortProduct}) }">
+								<!--sapUiSmallMarginBottom-->
+								<!--<SlideTile class="sapUiSmallMarginEnd sapMGeneriTile sapMSlideTile">-->
+								<!--<SlideTile class="sapUiSmallMarginEnd sapMGeneriTile sapMSlideTile">-->
+								<!--	<tiles>-->
+								<!--Codice buono-->
+								<!--<GenericTile class="sapUiSmallMarginEnd sapMGeneriTile sapMSlideTile"-->
+								<!--	backgroundImage="https://www.pintogelo.com/app/public/api/products/{categoryDetail>id}/photo" frameType="OneByOne" press="onPressProduct"-->
+								<!--	scope="{= ${views>/categoryPage/editProduct} ? 'Actions' : 'Display'}">-->
+								<!--	<TileContent-->
+								<!--		footer="{categoryDetail>currency} { path:'categoryDetail>price', type:'sap.ui.core.format.NumberFormat', formatOptions:{ showMeasure: false, decimals: 2, decimalSeparator:',' }}">-->
+								<!--		<NewsContent contentText="{categoryDetail>name}" subheader=""/>-->
+								<!--		<Text text="{categoryDetail>name}"/>width="11rem"-->
+								<!--	</TileContent>-->
+								<!--</GenericTile>-->
+								<FlexBox direction="Column" class="sapMProductTile sapUiSmallMarginEnd">
+									<GenericTile class="sapMSlideTileImg sapMGeneriTile" backgroundImage="https://www.pintogelo.com/app/public/api/products/{categoryDetail>id}/photo" frameType="OneByOne" press="onPressProduct"/>
+									<FlexBox direction="Column" height="5rem" class="sapMProductInformation">
+										<FlexBox direction="Column" justifyContent="SpaceBetween" height="100%"
+											class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+											<Text class="sapMProductInformationHeader" width="100%" text="{categoryDetail>name}" maxLines="2"/>
+											<Text class="sapMProductInformationFooter" width="100%"
+												text="{ parts:['categoryDetail>price', 'categoryDetail>currency'], type:'sap.ui.model.type.Currency', formatOptions:{ currencyCode: false }}"
+												textAlign="End"/>
+										</FlexBox>
+									</FlexBox>
+								</FlexBox>
+								<!--	</tiles>-->
+								<!--</SlideTile>-->
+								<!--<SlideTile class="sapUiSmallMarginEnd sapMGeneriTile sapMSlideTile">-->
+								<!--	<tiles>-->
+								<!--		<GenericTile frameType="OneByOne" press="press" header="Aggiungi Prodotto">-->
+								<!--			<TileContent>-->
+								<!--				<ImageContent src="sap-icon://add"/>-->
+								<!--			</TileContent>-->
+								<!--		</GenericTile>-->
+								<!--	</tiles>-->
+								<!--</SlideTile>-->
+								<!--tiles="{categoryDetail>images}"-->
+							</l:BlockLayoutCell>
+							<l:BlockLayoutCell width="1" visible="{= !(${views>/categoryPage/sortProduct}) }">
+								<GenericTile class="sapMGeneriTile sapMSlideTile" frameType="OneByOne" press="onPressNewProduct" header="{i18n>addProduct}"
+									data:newRow="{categoryDetail>id}">
+									<TileContent>
+										<ImageContent src="sap-icon://add"/>
+									</TileContent>
+								</GenericTile>
+							</l:BlockLayoutCell>
+							<l:BlockLayoutCell width="2" visible="{views>/categoryPage/sortProduct}">
+								<custom:List items="{ path:'categoryDetail>products', sorter:{ path:'order' } }" sortUpdate="onSortUpdateListCategory" sortable="true">
+									<custom:headerToolbar>
+										<Toolbar>
+											<ToolbarSpacer/>
+											<Button press="onPressSortCategories" icon="sap-icon://save" text="Salva ordine"/>
+										</Toolbar>
+									</custom:headerToolbar>
+									<custom:items>
+										<CustomListItem type="Inactive" class="sapUiContentPaddingCustom sapMCustomListItem sapUiTinyMarginTop">
+											<FlexBox justifyContent="SpaceBetween">
+												<core:Icon src="sap-icon://sorting-ranking" tooltip="Trascina per ordinare"/>
+												<Text text="{categoryDetail>name}" textAlign="End" width="100%"/>
+											</FlexBox>
+										</CustomListItem>
+									</custom:items>
+								</custom:List>
+							</l:BlockLayoutCell>
+						</l:BlockLayoutRow>
+					</l:BlockLayout>
+					<l:BlockLayout background="Default" visible="{= !(${views>/categoryPage/sortProduct}) }">
+						<l:BlockLayoutRow accentCells="Accent1">
+							<l:BlockLayoutCell>
+								<!--sapUiSmallMarginBottom-->
+								<GenericTile class="sapMGeneriTile sapMSlideTile" frameType="OneByOne" press="onPressNewProduct" header="{i18n>addProductNewRow}"
+									data:newRow="true">
+									<TileContent>
+										<ImageContent src="sap-icon://add"/>
+									</TileContent>
+								</GenericTile>
+								<!--tiles="{categoryDetail>images}"-->
+							</l:BlockLayoutCell>
+						</l:BlockLayoutRow>
+					</l:BlockLayout>
+				</l:VerticalLayout>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

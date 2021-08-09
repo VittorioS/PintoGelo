@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified" xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog contentWidth="640px" title="Modifica Prodotto" resizable="{device>/system/desktop}" draggable="{device>/system/desktop}">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Title text="Modifica Prodotto" width="100%"/>
+				</contentMiddle>
+				<contentLeft>
+					<Button width="50px" icon="sap-icon://delete" press="onPressDeleteProduct"/>
+					<!--<Button width="50px" icon="sap-icon://decline" press="_closeDialog"/>-->
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<content>
+			<form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+				<form:content>
+					<Label text="Nome" required="true"/>
+					<Input width="100%" value="{dialogs>/dialogEditProduct/product/name}"/>
+					<Label text="Descrizione" required="true"/>
+					<TextArea width="100%" value="{dialogs>/dialogEditProduct/product/description}" rows="5" growing="true"/>
+					<Label text="Prezzo" required="true"/>
+					<Input value="{ parts:['dialogs>/dialogEditProduct/product/price', 'dialogs>/dialogEditProduct/product/currency'], type:'sap.ui.model.type.Currency', formatOptions:{ currencyCode: false }}"/>
+					<Label text="Immagine" required="true"/>
+					<FlexBox width="100%" justifyContent="SpaceBetween" renderType="Bare">
+						<u:FileUploader id="fileUploaderEdit" width="100%" name="myFileUpload"
+							uploadUrl="https://www.pintogelo.com/app/public/api/products/{dialogs>/dialogEditProduct/product/id}/photo"
+							tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" change="handleValueChange"
+							typeMissmatch="handleTypeMissmatch" style="Emphasized" fileType="jpg,png" placeholder="Scegli un'immagine..."
+							visible="{= !(${device>/cordova})}"/>
+						<Input value="{dialogs>/dialogEditProduct/fileName}" placeholder="Scegli un'immagine..." visible="{device>/cordova}" fieldWidth="50%" width="100%"/>
+						<Button text="Sfoglia..." class="sapUiTinyMarginBegin" visible="{device>/cordova}" type="Emphasized" press="_onPressDialogEditProductSelectFile"/>
+					</FlexBox>
+					<Label text="Riga" required="true"/>
+					<Input width="100%" value="{dialogs>/dialogEditProduct/product/row}"/>
+					<Label text="Colonna" required="true"/>
+					<Input width="100%" value="{dialogs>/dialogEditProduct/product/column}"/>
+				</form:content>
+			</form:SimpleForm>
+			<!--<VBox>
+				<UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"
+					sendXHR="false" name="uploadCollection" uploadUrl="https://www.pintogelo.com/app/public/api/test" instantUpload="false"
+					noDataText="Carica immagini del prodotto" change="onChange" fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed"
+					fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch" uploadComplete="onUploadComplete"
+					beforeUploadStarts="onBeforeUploadStarts"/>
+			</VBox>-->
+		</content>
+		<beginButton>
+			<Button text="Modifica" press="_onPressDialogEditProduct"/>
+		</beginButton>
+		<endButton>
+			<Button text="Annulla" press="_closeDialog"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

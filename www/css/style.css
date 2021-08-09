@@ -1,0 +1,61 @@
+/* Enter your custom styles here */
+.primaryColor {
+	background-color: #ffff81;
+}
+.secondColor {
+	background-color: #ffff81;
+}
+.secondColorligth {
+	background-color: #F5F5F6;
+}
+
+.sapUiContentPaddingCustom {
+	padding: 1rem !important;
+}
+/*.sapMGeneriTile .sapMGTHdrContent {
+	height: 6rem;
+}
+.sapMGeneriTile .sapMGTContent {
+	height: 4.375rem;
+}
+.sapMGeneriTile .sapMTileCnt.News {
+	height: 4.125rem;
+}*/
+.sapMCustomListItem {
+	box-shadow: 0px 0px 15px 0px rgba(238,238,238,1);
+}
+.sapMSlideTile {
+	box-shadow: 0px 0px 15px 0px rgba(189,189,189,1);
+	background-size: cover;
+}
+.sapMSlideTileImg {
+	background-size: cover;
+}
+.sapMProductTile {
+	float: left;
+	box-shadow: 0px 0px 15px 0px rgba(189,189,189,1);
+	background-size: cover;
+	width: 11rem;
+}
+.sapMSplitAppMasterPage .sapMSplitContainerMaster  {
+	box-shadow: 5px 0px 15px 0px rgba(238,238,238,1);
+}
+.sapMProductInformation {
+	background-color: rgba(41,76,106,0.85);
+}
+.sapMProductInformationHeader {
+	color: #ffffff;
+	text-shadow: 0 0 0.125rem #000000;
+}
+.sapMProductInformationFooter {
+	color: #d9d9d9;
+	text-shadow: 0 0 0.125rem #000000;
+}
+
+
+@media screen and (max-width: 374px) {
+	.sapMProductTile {
+	    width: 9.25rem;
+	}
+}
+

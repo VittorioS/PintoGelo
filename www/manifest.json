@@ -1,0 +1,117 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "pintogeloApppintogeloApp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "pintogeloApppintogeloApp.view.rootView",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "pintogeloApppintogeloApp.i18n.i18n"
+				}
+			},
+			"dialogs": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": true,
+				"uri": "model/json/dialogs.json"
+			},
+			"views": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/json/views.json",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"controlId": "splitApp",
+				"controlAggregation": "masterPages",
+				"viewPath": "pintogeloApppintogeloApp/view"
+			},
+			"targets": {
+				"detailPage": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "detailPage",
+					"controlAggregation": "masterPages",
+					"controlId": "splitApp",
+					"viewLevel": 2
+				},
+				"category": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "category",
+					"controlAggregation": "detailPages",
+					"controlId": "splitApp",
+					"viewLevel": 1
+				}
+			},
+			"routes": [{
+				"name": "detailPage",
+				"pattern": "",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["category", "detailPage"]
+			}, {
+				"name": "category",
+				"pattern": "category/{id}",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["category", "detailPage"]
+			}]
+		}
+	}
+}

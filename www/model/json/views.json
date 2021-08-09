@@ -1,0 +1,11 @@
+{
+	"detailPage": {
+		"editSortCategory": false,
+		"sortedCategory": false,
+		"categoriesOriginal": []
+	},
+	"categoryPage": {
+		"editProduct": false,
+		"sortProduct": false
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"dialogNewCategory": {
+		"name": "",
+		"description": ""
+	},
+	"dialogEditCategory": null,
+	"dialogNewProduct": {
+		"product": {
+			"name": "",
+			"description": "",
+			"price": 0,
+			"currency": "€",
+			"photo": "_",
+			"row": 0,
+			"column": 0,
+			"category": 0
+		},
+		"newRow": null,
+		"fileName": ""
+	},
+	"dialogEditProduct": {
+		"product": {
+			"name": "",
+			"description": "",
+			"price": 0,
+			"currency": "€",
+			"photo": "_",
+			"row": 0,
+			"column": 0,
+			"category": 0
+		},
+		"fileName": ""
+	}
+}

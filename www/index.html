@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<!-- Fix cordova -->
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://www.pintogelo.com/ https://openui5.hana.ondemand.com data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://www.pintogelo.com/ https://openui5.hana.ondemand.com; media-src *; img-src 'self' data: content: https://www.pintogelo.com/ https://openui5.hana.ondemand.com ;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+		<!-- Fix cordova -->
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+
+		<title>pintogeloApp</title>
+
+		<script id="sap-ui-bootstrap"
+			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge"
+        	data-sap-ui-bindingSyntax="complex"
+			data-sap-ui-resourceroots='{"pintogeloApppintogeloApp": ""}'>
+		</script>
+
+<!-- Cordova Start-->
+        <script type="text/javascript" src="cordova.js"></script>
+<!-- Cordova End-->
+
+<!-- Fix mobile sortable Start-->
+		<script src="libs/jquery-ui.min.js"></script>
+<!-- Fix mobile sortable End-->
+
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<script>
+			sap.ui.getCore().attachInit(function() {
+				new sap.m.Shell({
+					app: new sap.ui.core.ComponentContainer({
+						height : "100%",
+						name : "pintogeloApppintogeloApp"
+					}),
+					backgroundImage: "img/bg_frontend.jpg"
+				}).placeAt("content");
+			});
+		</script>
+	</head>
+
+	<body class="sapUiBody" id="content">
+	</body>
+
+</html>
+
+<!--src="../../resources/sap-ui-core.js"-->
